@@ -1,0 +1,60 @@
+@model IEnumerable<Announcements.Web.ViewModel.IndexAdViewModel>
+
+@{
+    ViewData["Title"] = "IndexAsync";
+}
+
+<h2 class="mt-5 pt-5 pb-5 mb-5">Approve or delete ad request</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.Created
+
+            </td>
+
+            <td>
+                @item.Title
+
+            </td>
+
+            <td>
+                <img style="width:50px;height:50px;" src="@item.ImageUrl" />
+            </td>
+            <td>
+                @item.Type
+
+            </td>
+            <td>
+                <a asp-action="Approve" asp-route-id="@item.Id">Approve</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Do not Approve</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

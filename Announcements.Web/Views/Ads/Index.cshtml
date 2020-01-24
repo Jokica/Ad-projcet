@@ -1,0 +1,68 @@
+@model Announcements.Web.ViewModel.IndexListAdViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole(Constants.User.CompanyRole))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+    <div class="row pt-5 mt-5">
+        <div class="col">
+            <h3>Jobs</h3>
+            @foreach (var item in Model.JobAds)
+            {
+            <div class="row pt-5">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" style="width:100%;height:150px;" src="@item.ImageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Ad name : @item.Title</h5>
+                        <h6>Created: @item.Created</h6>
+                        <a href="#">@item.CompanyName</a>
+                        <a asp-action="details" asp-controller="ads" asp-route-id="@item.Id">See more</a>
+                    </div>
+                </div>
+            </div>
+            }
+            </div>
+
+        <div class="col">
+            <h3>Announcements</h3>
+            @foreach (var item in Model.AnnouncementAds)
+            {
+                <div class="row pt-5">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top figure-img" style="width:100%;height:150px;" src="@item.ImageUrl" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Ad name : @item.Title</h5>
+                            <h6>Created: @item.Created</h6>
+                            <a href="#">@item.CompanyName</a>
+                            <a asp-action="details" asp-controller="ads" asp-route-id="@item.Id">See more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col">
+            <h3>Projects</h3>
+            @foreach (var item in Model.ProjectAds)
+            {
+                <div class="row pt-5">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top figure-img" style="width:100%;height:150px;" src="@item.ImageUrl" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Ad name : @item.Title</h5>
+                            <h6>Created: @item.Created</h6>
+                            <a href="#">@item.CompanyName</a>
+                            <a asp-action="details" asp-controller="ads" asp-route-id="@item.Id">See more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
